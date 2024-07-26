@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name = "Console" target = "SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="ErrorFile" fileName="logs/errors.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL" />
+
+            </Filters>
+        </File>
+        <File name="InfoFile" fileName="logs/queries.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+        </File>
+
+
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" level = "info"/>
+            <AppenderRef ref="InfoFile" level = "info"/>
+            <AppenderRef ref="ErrorFile" level="error"/>
+
+        </Root>
+    </Loggers>
+</Configuration>
